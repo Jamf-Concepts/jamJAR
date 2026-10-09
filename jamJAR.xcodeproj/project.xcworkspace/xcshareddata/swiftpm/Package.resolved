@@ -1,0 +1,24 @@
+{
+  "originHash" : "4f72641b603c6d49248e6ef605fd05994dd99d4f50e19ebbb7efbfcc729352d2",
+  "pins" : [
+    {
+      "identity" : "swift-argument-parser",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-argument-parser.git",
+      "state" : {
+        "revision" : "46989693916f56d1186bd59ac15124caef896560",
+        "version" : "1.3.1"
+      }
+    },
+    {
+      "identity" : "swiftybeaver",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SwiftyBeaver/SwiftyBeaver",
+      "state" : {
+        "revision" : "1ae1f8fe06ce9e3bd84d1e821dcca5054dc6fb3c",
+        "version" : "2.1.0"
+      }
+    }
+  ],
+  "version" : 2
+}

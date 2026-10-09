@@ -1,0 +1,480 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 100;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		790A417E209CDBE800F197F4 /* postflight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790A417D209CDBE800F197F4 /* postflight.swift */; };
+		795507EE20287B1B00171EFA /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795507ED20287B1B00171EFA /* main.swift */; };
+		795507F520287F0000171EFA /* Shared Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795507F420287F0000171EFA /* Shared Functions.swift */; };
+		795507F720287F9E00171EFA /* Structures.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795507F620287F9E00171EFA /* Structures.swift */; };
+		8426E54B2FFBD94700F0D33F /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8426E54A2FFBD94000F0D33F /* Logging.swift */; };
+		8426E54F2FFBDE2600F0D33F /* notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8426E54E2FFBDE2100F0D33F /* notifications.swift */; };
+		8459735E2B5A8AE9009F013E /* pending.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8459735D2B5A8AE9009F013E /* pending.swift */; };
+		846A84222BD96F62003A11E6 /* SwiftyBeaver in Frameworks */ = {isa = PBXBuildFile; productRef = 846A84212BD96F62003A11E6 /* SwiftyBeaver */; };
+		846A84252BD96F68003A11E6 /* ArgumentParser in Frameworks */ = {isa = PBXBuildFile; productRef = 846A84242BD96F68003A11E6 /* ArgumentParser */; };
+		849776F92B98AD0C00B13AA7 /* Device Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849776F82B98AD0C00B13AA7 /* Device Details.swift */; };
+		84ABE7A7300E2EEB00CB4981 /* Manifest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84ABE7A6300E2EEB00CB4981 /* Manifest.swift */; };
+		84AFC7E32BC48E7700A218C9 /* reset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AFC7E22BC48E7700A218C9 /* reset.swift */; };
+		B55DD80F29F434E2004CE239 /* ArgParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = B55DD80E29F434E2004CE239 /* ArgParser.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		790A417D209CDBE800F197F4 /* postflight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = postflight.swift; sourceTree = "<group>"; };
+		795507EA20287B1B00171EFA /* jamJAR */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = jamJAR; sourceTree = BUILT_PRODUCTS_DIR; };
+		795507ED20287B1B00171EFA /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		795507F420287F0000171EFA /* Shared Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Shared Functions.swift"; sourceTree = "<group>"; };
+		795507F620287F9E00171EFA /* Structures.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structures.swift; sourceTree = "<group>"; };
+		8426E54A2FFBD94000F0D33F /* Logging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
+		8426E54E2FFBDE2100F0D33F /* notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = notifications.swift; sourceTree = "<group>"; };
+		8459735D2B5A8AE9009F013E /* pending.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = pending.swift; sourceTree = "<group>"; };
+		849776F82B98AD0C00B13AA7 /* Device Details.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Device Details.swift"; sourceTree = "<group>"; };
+		84ABE7A6300E2EEB00CB4981 /* Manifest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Manifest.swift; sourceTree = "<group>"; };
+		84AFC7E22BC48E7700A218C9 /* reset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = reset.swift; sourceTree = "<group>"; };
+		B55DD80E29F434E2004CE239 /* ArgParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArgParser.swift; sourceTree = "<group>"; };
+		B58B3E4529F69ABE0062F3EB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B58B3E5A29F69EEB0062F3EB /* jamJAR.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = jamJAR.entitlements; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		795507E720287B1B00171EFA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+				846A84252BD96F68003A11E6 /* ArgumentParser in Frameworks */,
+				846A84222BD96F62003A11E6 /* SwiftyBeaver in Frameworks */,
+			);
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		795507E120287B1B00171EFA = {
+			isa = PBXGroup;
+			children = (
+				795507EC20287B1B00171EFA /* jamJAR */,
+				795507EB20287B1B00171EFA /* Products */,
+				84EE1EBB2BD146C100BB7E56 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		795507EB20287B1B00171EFA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				795507EA20287B1B00171EFA /* jamJAR */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		795507EC20287B1B00171EFA /* jamJAR */ = {
+			isa = PBXGroup;
+			children = (
+				B58B3E5A29F69EEB0062F3EB /* jamJAR.entitlements */,
+				B58B3E4529F69ABE0062F3EB /* Info.plist */,
+				B55DD80E29F434E2004CE239 /* ArgParser.swift */,
+				849776F82B98AD0C00B13AA7 /* Device Details.swift */,
+				8426E54A2FFBD94000F0D33F /* Logging.swift */,
+				84ABE7A6300E2EEB00CB4981 /* Manifest.swift */,
+				795507F420287F0000171EFA /* Shared Functions.swift */,
+				795507F620287F9E00171EFA /* Structures.swift */,
+				795507ED20287B1B00171EFA /* main.swift */,
+				8426E54E2FFBDE2100F0D33F /* notifications.swift */,
+				8459735D2B5A8AE9009F013E /* pending.swift */,
+				790A417D209CDBE800F197F4 /* postflight.swift */,
+				84AFC7E22BC48E7700A218C9 /* reset.swift */,
+			);
+			path = jamJAR;
+			sourceTree = "<group>";
+		};
+		84EE1EBB2BD146C100BB7E56 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		795507E920287B1B00171EFA /* jamJAR */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 795507F120287B1B00171EFA /* Build configuration list for PBXNativeTarget "jamJAR" */;
+			buildPhases = (
+				795507E620287B1B00171EFA /* Sources */,
+				795507E720287B1B00171EFA /* Frameworks */,
+				840083B52BD259AC00FED549 /* CFBundleVersion */,
+				8415893C2C20831E008B1103 /* Swiftlint */,
+			);
+			buildRules = (
+			);
+			name = jamJAR;
+			packageProductDependencies = (
+				846A84212BD96F62003A11E6 /* SwiftyBeaver */,
+				846A84242BD96F68003A11E6 /* ArgumentParser */,
+			);
+			productName = warden;
+			productReference = 795507EA20287B1B00171EFA /* jamJAR */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		795507E220287B1B00171EFA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastSwiftUpdateCheck = 0920;
+				LastUpgradeCheck = 2700;
+				ORGANIZATIONNAME = Jamf;
+				TargetAttributes = {
+					795507E920287B1B00171EFA = {
+						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 1020;
+					};
+				};
+			};
+			buildConfigurationList = 795507E520287B1B00171EFA /* Build configuration list for PBXProject "jamJAR" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 795507E120287B1B00171EFA;
+			packageReferences = (
+				846A84202BD96F62003A11E6 /* XCRemoteSwiftPackageReference "SwiftyBeaver" */,
+				846A84232BD96F68003A11E6 /* XCRemoteSwiftPackageReference "swift-argument-parser" */,
+			);
+			preferredProjectObjectVersion = 100;
+			productRefGroup = 795507EB20287B1B00171EFA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				795507E920287B1B00171EFA /* jamJAR */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		840083B52BD259AC00FED549 /* CFBundleVersion */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			inputPaths = (
+				"$(DWARF_DSYM_FOLDER_PATH)/$(DWARF_DSYM_FILE_NAME)/Contents/Resources/DWARF/$(TARGET_NAME)",
+			);
+			name = CFBundleVersion;
+			shellPath = /bin/sh;
+			shellScript = (
+				"# Read more about semantic versioning: http://semver.org",
+				"# get the number of commits to use as the buid number",
+				"number_of_commits=$(git rev-list HEAD --count)",
+				"",
+				"if [ -f \"${INFOPLIST_FILE}\" ];",
+				"then",
+				"    /usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $number_of_commits\" \"${INFOPLIST_FILE}\"",
+				"fi",
+				"",
+			);
+		};
+		8415893C2C20831E008B1103 /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			name = Swiftlint;
+			shellPath = /bin/sh;
+			shellScript = (
+				"# exit 0",
+				"# If we're not being ran by the anka user",
+				"if [ \"${USER}\" != \"anka\" ]",
+				"then",
+				"    # Set a different path when running on silicon",
+				"    if [[ \"$(/usr/bin/uname -m)\" == arm64 ]]; then",
+				"        # Add homebrew's silicon location to PATH",
+				"        export PATH=\"/opt/homebrew/bin:$PATH\"",
+				"    fi",
+				"    # If we can find swiftlint",
+				"    if which swiftlint > /dev/null",
+				"    then",
+				"        # Run swiftlint",
+				"        swiftlint",
+				"    # If we can't find swiftlint",
+				"    else",
+				"        # Log error",
+				"        /bin/echo \"ERROR: SwiftLint not installed, exiting...\"",
+				"        # Exit",
+				"        exit 1",
+				"    fi",
+				"fi",
+				"",
+			);
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		795507E620287B1B00171EFA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+				8426E54F2FFBDE2600F0D33F /* notifications.swift in Sources */,
+				795507EE20287B1B00171EFA /* main.swift in Sources */,
+				849776F92B98AD0C00B13AA7 /* Device Details.swift in Sources */,
+				8426E54B2FFBD94700F0D33F /* Logging.swift in Sources */,
+				795507F720287F9E00171EFA /* Structures.swift in Sources */,
+				B55DD80F29F434E2004CE239 /* ArgParser.swift in Sources */,
+				795507F520287F0000171EFA /* Shared Functions.swift in Sources */,
+				8459735E2B5A8AE9009F013E /* pending.swift in Sources */,
+				790A417E209CDBE800F197F4 /* postflight.swift in Sources */,
+				84AFC7E32BC48E7700A218C9 /* reset.swift in Sources */,
+				84ABE7A7300E2EEB00CB4981 /* Manifest.swift in Sources */,
+			);
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		795507EF20287B1B00171EFA /* Debug configuration for PBXProject "jamJAR" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_LSBackgroundOnly = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		795507F020287B1B00171EFA /* Release configuration for PBXProject "jamJAR" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_LSBackgroundOnly = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		795507F220287B1B00171EFA /* Debug configuration for PBXNativeTarget "jamJAR" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = jamJAR/jamJAR.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
+				CREATE_INFOPLIST_SECTION_IN_BINARY = YES;
+				CURRENT_PROJECT_VERSION = 1.0.0;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = 483DWKW443;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				INFOPLIST_FILE = jamJAR/Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2018-2024 Jamf. All rights reserved.";
+				INFOPLIST_PREPROCESS = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jamf.jamJAR;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INCLUDE_PATHS = "";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		795507F320287B1B00171EFA /* Release configuration for PBXNativeTarget "jamJAR" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = jamJAR/jamJAR.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
+				CREATE_INFOPLIST_SECTION_IN_BINARY = YES;
+				CURRENT_PROJECT_VERSION = 1.0.0;
+				DEAD_CODE_STRIPPING = YES;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = 483DWKW443;
+				ENABLE_HARDENED_RUNTIME = YES;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				INFOPLIST_FILE = jamJAR/Info.plist;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2018-2024 Jamf. All rights reserved.";
+				INFOPLIST_PREPROCESS = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				MARKETING_VERSION = 2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jamf.jamJAR;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INCLUDE_PATHS = "";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		795507E520287B1B00171EFA /* Build configuration list for PBXProject "jamJAR" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				795507EF20287B1B00171EFA /* Debug configuration for PBXProject "jamJAR" */,
+				795507F020287B1B00171EFA /* Release configuration for PBXProject "jamJAR" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		795507F120287B1B00171EFA /* Build configuration list for PBXNativeTarget "jamJAR" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				795507F220287B1B00171EFA /* Debug configuration for PBXNativeTarget "jamJAR" */,
+				795507F320287B1B00171EFA /* Release configuration for PBXNativeTarget "jamJAR" */,
+			);
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		846A84202BD96F62003A11E6 /* XCRemoteSwiftPackageReference "SwiftyBeaver" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyBeaver/SwiftyBeaver";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.1.0;
+			};
+		};
+		846A84232BD96F68003A11E6 /* XCRemoteSwiftPackageReference "swift-argument-parser" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-argument-parser.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.3.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		846A84212BD96F62003A11E6 /* SwiftyBeaver */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 846A84202BD96F62003A11E6 /* XCRemoteSwiftPackageReference "SwiftyBeaver" */;
+			productName = SwiftyBeaver;
+		};
+		846A84242BD96F68003A11E6 /* ArgumentParser */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 846A84232BD96F68003A11E6 /* XCRemoteSwiftPackageReference "swift-argument-parser" */;
+			productName = ArgumentParser;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 795507E220287B1B00171EFA /* Project object */;
+}
