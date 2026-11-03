@@ -1,0 +1,352 @@
+{
+   "title":"jamJAR (com.jamf.jamJAR)",
+   "description":"Settings for jamJAR 2.0+.",
+   "__version":"2.0",
+   "type":"object",
+   "links":[
+      {
+         "rel":"More information",
+         "href":"https://github.com/Jamf-Concepts/jamJAR/wiki/jamJAR-Preferences"
+      }
+   ],
+   "defaultProperties":[
+      "use_notifier",
+      "message_title",
+      "Install Messages",
+      "Pending Install Messages",
+      "Pending Uninstall Messages",
+      "Uninstall Messages",
+      "Up-to-date Messages"
+   ],
+   "options":{
+      "remove_empty_properties":true
+   },
+   "properties":{
+      "use_notifier":{
+         "default":false,
+         "description":"If true, jamJAR will use /Applications/Utilities/Notifier.app for notifications.",
+         "options":{
+            "infoText":"Key: use_notifier"
+         },
+         "title":"Use Notifier?",
+         "type":"boolean"
+      },
+      "message_title":{
+         "default":"jamJAR",
+         "description":"The title used within any delivered messages.",
+         "options":{
+            "infoText":"Key: message_title"
+         },
+         "title":"Message Title",
+         "type":"string"
+      },
+      "Install Messages":{
+         "defaultProperties":[
+            "notify_installed"
+         ],
+         "description":"Settings for the install messages.",
+         "options":{
+            "remove_empty_properties":true
+         },
+         "properties":{
+            "notify_installed":{
+               "default":true,
+               "description": "Default: true.",
+               "options":{
+                  "infoText":"Key: notify_installed"
+               },
+               "title":"Notify the logged in user when a title has been installed.",
+               "type":"boolean"
+            },
+            "installed_notification_type":{
+               "default":"banner",
+               "description": "Default: banner.",
+               "enum":[
+                  "alert",
+                  "banner"
+               ],
+               "options":{
+                  "infoText":"Key: installed_notification_type"
+               },
+               "title":"Notification type for notifying a title has been installed.",
+               "type":"string"
+            },
+            "installed_message":{
+               "default":"%DISPLAYNAME% %DISPLAYVERSION% has been installed.",
+               "description":"The placeholders %DISPLAYNAME% and %DISPLAYVERSION% can be used for these notifications. Default: %DISPLAYNAME% %DISPLAYVERSION% has been installed.",
+               "format":"textarea",
+               "options":{
+                  "infoText":"Key: installed_message"
+               },
+               "title":"Message to display when a title has been installed.",
+               "type":"string"
+            }
+         },
+         "property_order":2,
+         "required":[
+            "notify_installed"
+         ],
+         "type":"object"
+      },
+      "Pending Install Messages":{
+         "defaultProperties":[
+            "notify_pending_install"
+         ],
+         "description":"Settings for the pending install messages.",
+         "options":{
+            "remove_empty_properties":true
+         },
+         "properties":{
+            "notify_pending_install":{
+               "default":true,
+               "description": "Default: true.",
+               "options":{
+                  "infoText":"Key: notify_pending_install"
+               },
+               "title":"Notify the logged in user when a title is pending installation.",
+               "type":"boolean"
+            },
+            "notify_pending_install_type":{
+               "default":"alert",
+               "description": "Default: alert.",
+               "enum":[
+                  "alert",
+                  "banner"
+               ],
+               "options":{
+                  "infoText":"Key: notify_pending_install_type"
+               },
+               "title":"Notification type for notifying a title is pending install.",
+               "type":"string"
+            },
+            "pending_install_message":{
+               "default":"One or more items are pending installation. Click here for more information or log out and the pending items will be installed.",
+               "description":"The placeholder %DISPLAYPENDING% can be used for these notifications, to show the number of pending items. Default: One or more items are pending installation. Click here for more information or log out and the pending items will be installed.",
+               "format":"textarea",
+               "options":{
+                  "infoText":"Key: pending_install_message"
+               },
+               "title":"Message to display when a title is pending installation.",
+               "type":"string"
+            },
+            "pending_install_message_frequency":{
+               "default":"every_run",
+              "description": "Default: every_run.",
+               "description":"Frequency of which pending install messages are posted.",
+               "enum":[
+                  "every_run",
+                  "on_change"
+               ],
+               "options":{
+                  "infoText":"Key: pending_install_message_frequency"
+               },
+               "title":"Frequency of which pending install messages are posted to the logged in user.",
+               "type":"string"
+            },
+            "pending_logout_install_button":{
+               "default":true,
+               "description":"Adds a logout button to the pending install message when enabled.",
+               "options":{
+                  "infoText":"Key: pending_logout_install_button"
+               },
+               "title":"If true, a logout button is added to the pending install message.",
+               "type":"boolean"
+            },
+            "pending_logout_install_button_text":{
+               "default":"Logout",
+               "description":"Sets the text displayed on the logout button. Default: Logout.",
+               "description": "Default: Logout.",
+               "format":"text",
+               "options":{
+                  "infoText":"Key: pending_logout_install_button_text"
+               },
+               "title":"Sets the text displayed on the logout button.",
+               "type":"string"
+            }
+         },
+         "property_order":3,
+         "required":[
+            "notify_pending_install"
+         ],
+         "type":"object"
+      },
+      "Pending Uninstall Messages":{
+         "defaultProperties":[
+            "notify_pending_uninstall"
+         ],
+         "description":"Settings for the pending uninstall messages.",
+         "options":{
+            "remove_empty_properties":true
+         },
+         "properties":{
+            "notify_pending_uninstall":{
+               "default":false,
+               "description": "Default: false.",
+               "options":{
+                  "infoText":"Key: notify_pending_uninstall"
+               },
+               "title":"Notify the logged in user when a title is pending uninstallation.",
+               "type":"boolean"
+            },
+            "notify_pending_uninstall_type":{
+               "default":"alert",
+               "description":"Default: alert.",
+               "enum":[
+                  "alert",
+                  "banner"
+               ],
+               "options":{
+                  "infoText":"Key: notify_pending_uninstall_type"
+               },
+               "title":"Notification type for notifying a title has been pending.",
+               "type":"string"
+            },
+            "pending_uninstall_message":{
+               "default":"One or more items are pending uninstallation. Click here for more information or log out and the pending items will be uninstalled.",
+               "description":"The placeholder %DISPLAYPENDING% can be used for these notifications, to show the number of pending items. Default: One or more items are pending uninstallation. Click here for more information or log out and the pending items will be uninstalled.",
+               "format":"textarea",
+               "options":{
+                  "infoText":"Key: pending_uninstall_message"
+               },
+               "title":"Message to display when a title is pending uninstallation.",
+               "type":"string"
+            },
+            "pending_uninstall_message_frequency":{
+               "default":"every_run",
+               "description":"Frequency of which pending uninstall messages are posted.",
+               "description": "Default: every_run.",
+               "enum":[
+                  "every_run",
+                  "on_change"
+               ],
+               "options":{
+                  "infoText":"Key: pending_uninstall_message_frequency"
+               },
+               "title":"Frequency of which pending uninstall messages are posted to the logged in user.",
+               "type":"string"
+            },
+            "pending_logout_uninstall_button":{
+               "default":true,
+               "description":"Default: true.",
+               "options":{
+                  "infoText":"Key: pending_logout_uninstall_button"
+               },
+               "title":"If true, a logout button is added to the pending uninstall message.",
+               "type":"boolean"
+            },
+            "pending_logout_uninstall_button_text":{
+               "default":"Logout",
+               "description": "Default: Logout.",
+               "format":"text",
+               "options":{
+                  "infoText":"Key: pending_logout_uninstall_button_text"
+               },
+               "title":"Sets the text displayed on the logout button.",
+               "type":"string"
+            }
+         },
+         "property_order":3,
+         "required":[
+            "notify_pending_uninstall"
+         ],
+         "type":"object"
+      },
+      "Uninstall Messages":{
+         "defaultProperties":[
+            "notify_uninstalled"
+         ],
+         "description":"Settings for the uninstall messages.",
+         "options":{
+            "remove_empty_properties":true
+         },
+         "properties":{
+            "notify_uninstalled":{
+               "default":false,
+               "description": "Default: false.",
+               "options":{
+                  "infoText":"Key: notify_uninstalled"
+               },
+               "title":"Notify the logged in user when a title has been uninstalled.",
+               "type":"boolean"
+            },
+            "uninstalled_notification_type":{
+               "default":"banner",
+               "description": "Default: banner.",
+               "description":"Notification type to use when notifying a title has been uninstalled.",
+               "enum":[
+                  "alert",
+                  "banner"
+               ],
+               "options":{
+                  "infoText":"Key: uninstalled_notification_type"
+               },
+               "title":"Notification type for notifying a title has been uninstalled.",
+               "type":"string"
+            },
+            "notify_uninstalled_message":{
+               "default":"%DISPLAYNAME% has been uninstalled.",
+               "description":"The placeholder %DISPLAYNAME% can be used for these notifications. Default: %DISPLAYNAME% has been uninstalled.",
+               "format":"textarea",
+               "options":{
+                  "infoText":"Key: notify_uninstalled_message"
+               },
+               "title":"Message to display when a title has been uninstalled.",
+               "type":"string"
+            }
+         },
+         "property_order":4,
+         "required":[
+            "notify_uninstalled"
+         ],
+         "type":"object"
+      },
+      "Up-to-date Messages":{
+         "defaultProperties":[
+            "notify_up_to_date"
+         ],
+         "description":"Settings for the up-to-date messages.",
+         "options":{
+            "remove_empty_properties":true
+         },
+         "properties":{
+            "notify_up_to_date":{
+               "default":true,
+               "description": "Default: true.",
+               "options":{
+                  "infoText":"Key: notify_up_to_date"
+               },
+               "title":"Notify the logged in user when and install is attempted via Self Service, but the version installed is the latest version available.",
+               "type":"boolean"
+            },
+            "up_to_date_notification_type":{
+               "default":"banner",
+               "description":"Default: banner.",
+               "enum":[
+                  "alert",
+                  "banner"
+               ],
+               "options":{
+                  "infoText":"Key: up_to_date_notification_type"
+               },
+               "title":"Notification type for notifying a title is up-to-date",
+               "type":"string"
+            },
+            "notify_up_to_date_message":{
+               "default":"The latest version of %DISPLAYNAME% is installed.",
+               "description":"The placeholder %DISPLAYNAME% can be used for these notifications. Default: The latest version of %DISPLAYNAME% is installed.",
+               "format":"textarea",
+               "options":{
+                  "infoText":"Key: notify_up_to_date_message"
+               },
+               "title":"Message to display when an install is attempted via Self Service but the version installed is the latest version available.",
+               "type":"string"
+            }
+         },
+         "property_order":5,
+         "required":[
+            "notify_up_to_date"
+         ],
+         "type":"object"
+      }
+   }
+}
