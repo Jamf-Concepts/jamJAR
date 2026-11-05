@@ -106,6 +106,8 @@ func setupLogging() {
     fileLog.format = "$Dyyyy-MM-dd HH:mm:ss Z$d ~ $L: $M"
     // Disable asynchronous logging.
     fileLog.asynchronously = false
+    // Default to info level so verbose messages don't appear unless explicitly enabled.
+    fileLog.minLevel = .info
     // Set log file path.
     fileLog.logFileURL = URL(fileURLWithPath: String(GlobalVariables.logPath))
     // Add the file destination to the logging object.
