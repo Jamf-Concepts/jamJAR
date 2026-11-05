@@ -132,7 +132,7 @@ processParameter()
     local jamJAR_version
     local -a cli_command
     local force_action="${3}"
-    local jau_action="${2}"
+    local jamjar_action="${2}"
     local parameter_value="${1}"
     local -a passed_titles
     local return_code=0
@@ -165,7 +165,7 @@ processParameter()
     for passed_title in "${passed_titles[@]}"
     do
         # Create the base command to call `JAMJAR_BINARY`.
-        cli_command=("${JAMJAR_BINARY}" "${jau_action}" "${passed_title}")
+        cli_command=("${JAMJAR_BINARY}" "${jamjar_action}" "${passed_title}")
         # If we're to force the action...
         if [[ -n "${force_action}" ]]
         then
