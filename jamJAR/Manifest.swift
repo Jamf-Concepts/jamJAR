@@ -33,40 +33,42 @@ func modifyManifest(actionType: String, sectionName: String, titleName: String) 
                 """)
     // Info logging.
     log.info("jamJAR - \(GlobalVariables.jamJARVersion) - Modifying manifest...")
+    // Split on commas to support multiple titles in a single call.
+    let titleNames = titleName.split(separator: ",").map { $0.trimmingCharacters(in: .whitespaces) }.filter { !$0.isEmpty }
     // Look for the installs arrays within the manifest.
     var (managedInstallsArray, managedUninstallsArray) = getInstallsArrays(asUser: false)
     // If we're to modify `managed_installs`...
     if sectionName == "managed_installs" {
         // If we're to add
         if actionType == "add" {
-            // Add `titleName` to `managed_installs`.
-            managedInstallsArray.append(titleName)
+            // Add each title to `managed_installs`.
+            managedInstallsArray.append(contentsOf: titleNames)
             // Set `modificationMessage`.
-            modificationMessage = "Added \(titleName) to installs, installs now contains:"
+            modificationMessage = "Added \(titleNames.joined(separator: ", ")) to installs, installs now contains:"
         }
         // If we're to remove...
         if actionType == "remove" {
-            // Remove any occurrences of `titleName` within `managed_installs`
-            managedInstallsArray.removeAll { $0 == titleName }
+            // Remove any occurrences of each title within `managed_installs`.
+            managedInstallsArray.removeAll { titleNames.contains($0) }
             // Set `modificationMessage`
-            modificationMessage = "Removed \(titleName) from installs, installs now contains:"
+            modificationMessage = "Removed \(titleNames.joined(separator: ", ")) from installs, installs now contains:"
         }
     }
     // If we're to modify `managed_uninstalls`...
     if sectionName == "managed_uninstalls" {
         // If we're to add
         if actionType == "add" {
-            // Add `titleName` to `managed_uninstalls`.
-            managedUninstallsArray.append(titleName)
+            // Add each title to `managed_uninstalls`.
+            managedUninstallsArray.append(contentsOf: titleNames)
             // Set `modificationMessage`.
-            modificationMessage = "Added \(titleName) to uninstalls, uninstalls now contains:"
+            modificationMessage = "Added \(titleNames.joined(separator: ", ")) to uninstalls, uninstalls now contains:"
         }
         // If we're to remove...
         if actionType == "remove" {
-            // Remove any occurrences of `titleName` within `managed_uninstalls`...
-            managedUninstallsArray.removeAll { $0 == titleName }
+            // Remove any occurrences of each title within `managed_uninstalls`.
+            managedUninstallsArray.removeAll { titleNames.contains($0) }
             // Set `modificationMessage`
-            modificationMessage = "Removed \(titleName) from uninstalls, uninstalls now contains:"
+            modificationMessage = "Removed \(titleNames.joined(separator: ", ")) from uninstalls, uninstalls now contains:"
         }
     }
     // Update the manifest.
