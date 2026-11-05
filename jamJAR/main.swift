@@ -8,9 +8,6 @@
 // Imports
 import Foundation
 
-// Setup logging.
-setupLogging()
-
 // Pass the arguments.
 // Array of arguments passed to the executable, with the first argument dropped as it is always the executable itself.
 let passedArgs = Array(CommandLine.arguments.dropFirst())
@@ -25,6 +22,30 @@ if passedArgs.isEmpty {
 } else {
     // Parse the arguments.
     let parsedResult = JamJAR.parseOrExit(passedArgs)
+
+    // Perform root checks before logging setup — exits here for non-root users so no log write is attempted.
+    if !parsedResult.commands.addToInstalls.isEmpty {
+        rootCheck(passedArg: "--add-to-installs")
+    } else if !parsedResult.commands.addToUninstalls.isEmpty {
+        rootCheck(passedArg: "--add-to-uninstalls")
+    } else if parsedResult.commands.postflight {
+        rootCheck(passedArg: "--postflight")
+    } else if !parsedResult.commands.removeFromInstalls.isEmpty {
+        rootCheck(passedArg: "--remove-from-installs")
+    } else if !parsedResult.commands.removeFromUninstalls.isEmpty {
+        rootCheck(passedArg: "--remove-from-uninstalls")
+    } else if parsedResult.collectLogs {
+        rootCheck(passedArg: "--collect-logs")
+    } else if parsedResult.reset {
+        rootCheck(passedArg: "--reset")
+    }
+
+    // Setup logging now that root checks have passed (or aren't needed).
+    // Skip for --version which needs no log file.
+    if !parsedResult.version {
+        setupLogging()
+    }
+
     // If we're not looking to process pending items or get the version...
     if !parsedResult.version && !parsedResult.commands.processPending {
         // Sets the `force_process` key as needed.
@@ -32,24 +53,19 @@ if passedArgs.isEmpty {
         // Sets the `verbose_mode` key as needed.
         verboseCheck(parsedResult: parsedResult)
     }
+
     // If `--add-to-installs` was passed...
     if !parsedResult.commands.addToInstalls.isEmpty {
-        // Exit if not running as root.
-        rootCheck(passedArg: "--add-to-installs")
-        // Add the title to an installs array...
+        // Add the title to an installs array..
         modifyManifest(actionType: "add", sectionName: "managed_installs",
                        titleName: parsedResult.commands.addToInstalls)
     // If `--add-to-uninstalls` was passed...
     } else if !parsedResult.commands.addToUninstalls.isEmpty {
-        // Exit if not running as root.
-        rootCheck(passedArg: "--add-to-uninstalls")
         // Add the title to `managed_uninstalls`.
         modifyManifest(actionType: "add", sectionName: "managed_uninstalls",
                        titleName: parsedResult.commands.addToUninstalls)
     // If `--postflight` was passed...
     } else if parsedResult.commands.postflight {
-        // Exit if not running as root.
-        rootCheck(passedArg: "--postflight")
         // Run function.
         postflight(parsedResult: parsedResult)
     // If `--process-pending` was passed...
@@ -58,28 +74,20 @@ if passedArgs.isEmpty {
         processPending(itemType: "", managedItemsArray: [], postNotifications: true)
     // If `--remove-from-installs` was passed...
     } else if !parsedResult.commands.removeFromInstalls.isEmpty {
-        // Exit if not running as root.
-        rootCheck(passedArg: "--remove-from-installs")
         // Remove the title from `managed_installs`.
         modifyManifest(actionType: "remove", sectionName: "managed_installs",
                        titleName: parsedResult.commands.removeFromInstalls)
     // If `--remove-from-uninstalls` was passed...
     } else if !parsedResult.commands.removeFromUninstalls.isEmpty {
-        // Exit if not running as root.
-        rootCheck(passedArg: "--remove-from-uninstalls")
         // Remove the title from `managed_uninstalls`.
         modifyManifest(actionType: "remove", sectionName: "managed_uninstalls",
                        titleName: parsedResult.commands.removeFromUninstalls)
     // If `--collect-logs` was passed...
     } else if parsedResult.collectLogs {
-        // Exit if not running as root.
-        rootCheck(passedArg: "--collect-logs")
         // Run function.
         collectLogs()
     // If `--reset` was passed...
     } else if parsedResult.reset {
-        // Exit if not running as root.
-        rootCheck(passedArg: "--reset")
         // Run function.
         reset(parsedResult: parsedResult)
     // If `--version` was passed...
