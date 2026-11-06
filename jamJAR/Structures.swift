@@ -201,6 +201,9 @@ struct PreferenceVariables {
     static let notificationTitle = jamJARDefaults.object(forKey: "message_title") as? String ?? "jamJAR"
     // Whether to use Notifier for notificaitions or Management Action
     static let useNotifier = jamJARDefaults.object(forKey: "use_notifier") as? Bool ?? false
+    // The bundle identifier used as the sender for Management Action notifications.
+    static let notifierSenderId = jamJARDefaults.object(forKey: "notifier_sender_id") as? String
+                                      ?? "com.jamfsoftware.selfservice"
     // Path to the notifier application.
     static var notifierAppPath: String {
         // Notifier's path if `useNotifier` is true, Management Action if not.
