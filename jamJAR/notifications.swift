@@ -209,47 +209,52 @@ func notifyUninstalled(varDict: [String: String]) {
     }
 }
 
-/// Delivers a notification via Notifier.app.
+/// Delivers a notification via Notifier.app or Management Action.
 ///
-/// Builds the argument list for the Notifier binary and runs it synchronously. When
-/// `notificationButton` is `true`, a logout button is appended whose label is
-/// `notificationButtonText`.
+/// Runs the notification binary as the logged-in user via `/usr/bin/su -l`. When
+/// `useNotifier` is `true`, double-dash Notifier flags are used; otherwise single-dash
+/// Management Action flags are used (no `--type` or `--messageaction`). Does nothing
+/// if no user is logged in.
 ///
 /// - Parameters:
-///     - notificationButton: Whether to include a logout action button in the notification.
+///     - notificationButton: Whether to include a logout action button (Notifier only).
 ///     - notificationButtonText: The label for the logout button (ignored when `notificationButton` is `false`).
 ///     - notificationText: The body text of the notification.
-///     - notificationType: The notification style — `"banner"` or `"alert"`.
+///     - notificationType: The notification style — `"banner"` or `"alert"` (Notifier only).
 ///
 func postNotification(notificationButton: Bool, notificationButtonText: String, notificationText: String,
                       notificationType: String) {
-    // Var declaration(s).
-    var taskArguments = [String]()
-    // If we're to add a button to the post
-    if notificationButton {
-        // Set arguments to the notification details
-        taskArguments = ["--messageaction", "'" + GlobalVariables.managedSoftwareCenterPath + "'",
-                         "--message", notificationText,
-                         "--title", PreferenceVariables.notificationTitle,
-                         "--type", notificationType,
-                         "--messagebutton", notificationButtonText,
-                         "--messagebuttonaction", "logout"]
-    // If no button
+    // Get the logged-in user; nothing to do if at the login window.
+    let username = loggedInUser()
+    guard !username.isEmpty else { return }
+    // Build the shell command string passed to `su -l username -c`.
+    let binaryPath = PreferenceVariables.notifierBinaryPath
+    let shellCommand: String
+    if PreferenceVariables.useNotifier {
+        // Notifier (dataJAR) uses double-dash flags.
+        if notificationButton {
+            shellCommand = "\"\(binaryPath)\" --messageaction \"\(GlobalVariables.managedSoftwareCenterPath)\""
+                         + " --message \"\(notificationText)\""
+                         + " --title \"\(PreferenceVariables.notificationTitle)\""
+                         + " --type \"\(notificationType)\""
+                         + " --messagebutton \"\(notificationButtonText)\""
+                         + " --messagebuttonaction \"logout\""
+        } else {
+            shellCommand = "\"\(binaryPath)\" --messageaction \"\(GlobalVariables.managedSoftwareCenterPath)\""
+                         + " --message \"\(notificationText)\""
+                         + " --title \"\(PreferenceVariables.notificationTitle)\""
+                         + " --type \"\(notificationType)\""
+        }
     } else {
-        // Set arguments to the notification details
-        taskArguments = ["--messageaction", "'" + GlobalVariables.managedSoftwareCenterPath + "'",
-                         "--message", notificationText,
-                         "--title", PreferenceVariables.notificationTitle,
-                         "--type", notificationType]
+        // Management Action uses single-dash flags; no --type or --messageaction.
+        shellCommand = "\"\(binaryPath)\" -sender \"\(PreferenceVariables.notifierSenderId)\""
+                     + " -message \"\(notificationText)\""
+                     + " -title \"\(PreferenceVariables.notificationTitle)\""
     }
-    // If we have arguments
-    if !taskArguments.isEmpty {
-        // Set to the path to the Notifier.app
-        let taskPath = PreferenceVariables.notifierBinaryPath
-        // Run the task, ignoring returned data and exit status
-        (_, _) = runTask(callMethod: "", logActions: true, taskPath: taskPath, taskArguments: taskArguments,
-                         waitUntilExit: true)
-    }
+    // Run the notification binary as the logged-in user.
+    (_, _) = runTask(callMethod: "", logActions: true, taskPath: "/usr/bin/su",
+                     taskArguments: ["-l", username, "-c", shellCommand],
+                     waitUntilExit: true)
 }
 
 /// Removes a prior pending notification from Notification Center and clears the related preference keys.
@@ -278,33 +283,29 @@ func removePriorNotification(itemType: String, loggedInUser: String,
                     userPlist: \(userPlist)
                     """)
     }
-    // Var declaration(s).
-    var taskArguments = [String]()
-    // If the message had a button added to it post
-    if displayArgs.notificationButton {
-        // Set arguments to the notification details
-        taskArguments = ["--messageaction", "'" + GlobalVariables.managedSoftwareCenterPath + "'",
-                         "--message", displayArgs.notificationText,
-                         "--remove", "prior",
-                         "--title", PreferenceVariables.notificationTitle,
-                         "--type", displayArgs.notificationType,
-                         "--messagebutton", displayArgs.notificationButtonText,
-                         "--messagebuttonaction", "logout"]
-    // If no button
-    } else {
-        // Set arguments to the notification details
-        taskArguments = ["--messageaction", "'" + GlobalVariables.managedSoftwareCenterPath + "'",
-                         "--message", displayArgs.notificationText,
-                         "--remove", "prior",
-                         "--title", PreferenceVariables.notificationTitle,
-                         "--type", displayArgs.notificationType]
-    }
-    // If we have arguments
-    if !taskArguments.isEmpty {
-        // Set to the path to the Notifier.app
-        let taskPath = PreferenceVariables.notifierBinaryPath
-        // Run the task, ignoring returned data and exit status
-        (_, _) = runTask(callMethod: "", logActions: false, taskPath: taskPath, taskArguments: taskArguments,
+    // `--remove prior` is a Notifier-only flag; Management Action does not support it.
+    if PreferenceVariables.useNotifier && !loggedInUser.isEmpty {
+        // Build the shell command string passed to `su -l username -c`.
+        let binaryPath = PreferenceVariables.notifierBinaryPath
+        let shellCommand: String
+        if displayArgs.notificationButton {
+            shellCommand = "\"\(binaryPath)\" --messageaction \"\(GlobalVariables.managedSoftwareCenterPath)\""
+                         + " --message \"\(displayArgs.notificationText)\""
+                         + " --remove \"prior\""
+                         + " --title \"\(PreferenceVariables.notificationTitle)\""
+                         + " --type \"\(displayArgs.notificationType)\""
+                         + " --messagebutton \"\(displayArgs.notificationButtonText)\""
+                         + " --messagebuttonaction \"logout\""
+        } else {
+            shellCommand = "\"\(binaryPath)\" --messageaction \"\(GlobalVariables.managedSoftwareCenterPath)\""
+                         + " --message \"\(displayArgs.notificationText)\""
+                         + " --remove \"prior\""
+                         + " --title \"\(PreferenceVariables.notificationTitle)\""
+                         + " --type \"\(displayArgs.notificationType)\""
+        }
+        // Run the notification binary as the logged-in user.
+        (_, _) = runTask(callMethod: "", logActions: false, taskPath: "/usr/bin/su",
+                         taskArguments: ["-l", loggedInUser, "-c", shellCommand],
                          waitUntilExit: true)
     }
     // If itemType has a value, we're being ran as root
