@@ -130,15 +130,17 @@ struct MunkiVariables {
     static let munkiDefaults = UserDefaults(suiteName: "ManagedInstalls")
     // Path to Munki's `InstallInfo.plist`.
     static let installInfo = managedInstallDir + "InstallInfo.plist"
-    // Path to the Managed Installs directory.
-    static let managedInstallDir = munkiDefaults?.object(forKey:
-                                                        "ManagedInstallDir") as? String ?? "/Library/Managed Installs/"
+    // Path to the Managed Installs directory, normalised to always have a trailing slash.
+    static let managedInstallDir: String = {
+        let dir = munkiDefaults?.object(forKey: "ManagedInstallDir") as? String ?? "/Library/Managed Installs"
+        return dir.hasSuffix("/") ? dir : dir + "/"
+    }()
     // Path to Munki's `ManagedInstallReport.plist`.
     static let managedInstallReport = managedInstallDir + "ManagedInstallReport.plist"
     // Name of the to the Munki manifest.
     static let manifestName = munkiDefaults?.object(forKey: "LocalOnlyManifest") as? String ?? "jamJAR"
     // Path to the Munki manifest.
-    static let manifestPath = managedInstallDir + "manifests/" + manifestName
+    static let manifestPath = managedInstallDir + "manifests/" + manifestName + ".plist"
 }
 
 /// Bundles the display arguments needed to post or remove a pending notification.
