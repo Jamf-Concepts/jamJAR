@@ -289,9 +289,6 @@ func processManagedInstallReportContent(itemsDict: inout [String: Int],
     if managedInstallReportContent.installResults != nil {
         // For each title within `InstallResults`.
         for titleName in managedInstallReportContent.installResults!.enumerated() {
-            // Only treat as fully installed when status == 0; a non-zero status means the
-            // item is pending a logout/restart and must stay in the manifest.
-            guard titleName.element.status == 0 else { continue }
             // Remove title from `managed_installs` (if exists).
             managedInstallsArray.removeAll { $0 == titleName.element.name! }
             // Notify the user that the item has been installed.
