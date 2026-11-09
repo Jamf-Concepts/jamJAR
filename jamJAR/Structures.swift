@@ -137,8 +137,13 @@ struct MunkiVariables {
     }()
     // Path to Munki's `ManagedInstallReport.plist`.
     static let managedInstallReport = managedInstallDir + "ManagedInstallReport.plist"
-    // Name of the to the Munki manifest.
-    static let manifestName = munkiDefaults?.object(forKey: "LocalOnlyManifest") as? String ?? "jamJAR"
+    // Name of the Munki manifest, normalised to exclude the .plist extension. MDM profiles may
+    // supply the value with the extension already included (e.g. "jamJAR.plist"); strip it so the
+    // path construction below doesn't produce a double extension.
+    static let manifestName: String = {
+        let raw = munkiDefaults?.object(forKey: "LocalOnlyManifest") as? String ?? "jamJAR"
+        return raw.hasSuffix(".plist") ? String(raw.dropLast(6)) : raw
+    }()
     // Path to the Munki manifest.
     static let manifestPath = managedInstallDir + "manifests/" + manifestName + ".plist"
 }
