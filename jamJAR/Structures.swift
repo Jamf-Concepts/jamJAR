@@ -201,7 +201,7 @@ struct PreferenceVariables {
     // The shared `UserDefaults` instance used to read preference values.
     static let jamJARDefaults = UserDefaults.standard
     // Whether to force processing, bypassing normal deferral and termination checks.
-    static let forceProcess = jamJARDefaults.object(forKey: "force_process") as? Bool ?? false
+    static var forceProcess: Bool { jamJARDefaults.bool(forKey: "force_process") }
     // The title for all messages.
     static let notificationTitle = jamJARDefaults.object(forKey: "message_title") as? String ?? "jamJAR"
     // Whether to use Notifier for notificaitions or Management Action
