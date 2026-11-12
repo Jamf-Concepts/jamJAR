@@ -239,10 +239,7 @@ struct PreferenceVariables {
                                              "Pending Install Messages") as Dictionary? ?? [String: Any]()
     // Pending install message.
     static let pendingInstallMessage = PreferenceVariables.pendingInstallMessages["pending_install_message"] as?
-                                         String ?? """
-                                                One or more items are pending installation. Click here for more \
-                                                information or log out and the pending items will be installed.
-                                                """
+                                         String ?? "One or more items are pending installation."
     // Frequency of which pending install messages are posted.
     static let pendingInstallMessageFrequency =
                  PreferenceVariables.pendingInstallMessages["pending_install_message_frequency"]
@@ -264,10 +261,7 @@ struct PreferenceVariables {
                                              "Pending Uninstall Messages") as Dictionary? ?? [String: Any]()
     // Pending uninstall message.
     static let pendingUninstallMessage = PreferenceVariables.pendingUninstallMessages["pending_uninstall_message"]
-                                          as? String ?? """
-                                            One or more items are pending uninstallation. Click here for more \
-                                            information or log out and the pending items will be uninstalled.
-                                            """
+                                          as? String ?? "One or more items are pending uninstallation."
     // Frequency of which pending uninstall messages are posted.
     static let pendingUninstallMessageFrequency =
                  PreferenceVariables.pendingUninstallMessages["pending_uninstall_message_frequency"]
