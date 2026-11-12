@@ -138,7 +138,7 @@ processParameter()
     local return_code=0
     local run_errors=''
     local tail_pid
-    local verbose_mode="${5}"
+    local verbose_mode="${4}"
 
     # Attempt to retrieve the version of `JAMJAR_BINARY`.
     jamJAR_version="$("${JAMJAR_BINARY}" --version 2>&1)"
