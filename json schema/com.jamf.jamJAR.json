@@ -120,8 +120,8 @@
                "type": "string"
             },
             "pending_install_message":{
-               "default": "One or more items are pending installation. Click here for more information or log out and the pending items will be installed.",
-               "description": "The placeholder %DISPLAYPENDING% can be used for these notifications, to show the number of pending items. Default: One or more items are pending installation. Click here for more information or log out and the pending items will be installed.",
+               "default": "One or more items are pending installation.",
+               "description": "The placeholder %DISPLAYPENDING% can be used for these notifications, to show the number of pending items. Default: One or more items are pending installation.",
                "format": "textarea",
                "options":{
                   "infoText": "Key: pending_install_message"
@@ -144,9 +144,9 @@
             },
             "pending_logout_install_button":{
                "default":true,
-               "description": "Adds a logout button to the pending install message when enabled.",
+               "description": "Notifier only. Adds a logout button to the pending install message when enabled.",
                "options":{
-                  "infoText": "Notifier only. Key: pending_logout_install_button"
+                  "infoText": "Key: pending_logout_install_button"
                },
                "title": "If true, a logout button is added to the pending install message.",
                "type": "boolean"
@@ -200,8 +200,8 @@
                "type": "string"
             },
             "pending_uninstall_message":{
-               "default": "One or more items are pending uninstallation. Click here for more information or log out and the pending items will be uninstalled.",
-               "description": "The placeholder %DISPLAYPENDING% can be used for these notifications, to show the number of pending items. Default: One or more items are pending uninstallation. Click here for more information or log out and the pending items will be uninstalled.",
+               "default": "One or more items are pending uninstallation.",
+               "description": "The placeholder %DISPLAYPENDING% can be used for these notifications, to show the number of pending items. Default: One or more items are pending uninstallation.",
                "format": "textarea",
                "options":{
                   "infoText": "Key: pending_uninstall_message"
