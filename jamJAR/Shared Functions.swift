@@ -110,7 +110,7 @@ func resetPreferenceDomain(prefDomain: String) {
 /// Triggers a Munki run via `managedsoftwareupdate`.
 ///
 /// When `PreferenceVariables.forceProcess` is `true`, runs `--checkonly` first to populate the
-/// install list, then immediately fires `--installonly` without waiting. Otherwise, runs with
+/// install list, then immediately fires `--installonly --force` without waiting. Otherwise, runs with
 /// the standard `--auto --munkistatusoutput` flags without waiting.
 ///
 func runMunki() {
@@ -125,7 +125,7 @@ func runMunki() {
         toggleOption(enableOption: verboseMode, optionName: "verbose_mode")
         // Install all items, including pending.. ignoring if running etc
         (_, _) = runTask(callMethod: "", logActions: false, taskPath: "/usr/local/munki/managedsoftwareupdate",
-                         taskArguments: ["--installonly"], waitUntilExit: false)
+                         taskArguments: ["--installonly", "--force"], waitUntilExit: false)
     // If we're not forcing...
     } else {
         // Run Munki.
