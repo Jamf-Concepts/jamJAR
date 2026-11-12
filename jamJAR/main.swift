@@ -48,8 +48,11 @@ if passedArgs.isEmpty {
 
     // If we're not looking to process pending items or get the version...
     if !parsedResult.version && !parsedResult.commands.processPending {
-        // Sets the `force_process` key as needed.
-        forceCheck(parsedResult: parsedResult)
+        // Sets the `force_process` key as needed (not for postflight, which carries over the value
+        // set by the manifest modification invocation).
+        if !parsedResult.commands.postflight {
+            forceCheck(parsedResult: parsedResult)
+        }
         // Sets the `verbose_mode` key as needed.
         verboseCheck(parsedResult: parsedResult)
     }
