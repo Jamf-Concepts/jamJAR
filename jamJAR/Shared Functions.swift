@@ -118,16 +118,22 @@ func runMunki() {
     if PreferenceVariables.forceProcess {
         // Cache value for `verboseMode`.. to set as needed for second run
         let verboseMode = PreferenceVariables.verboseMode
+        // Verbose logging.
+        log.verbose("\(#function.components(separatedBy: "(")[0]) - triggering Munki with --checkonly")
         // Run checkonly.
         (_, _) = runTask(callMethod: "", logActions: false, taskPath: "/usr/local/munki/managedsoftwareupdate",
                          taskArguments: ["--checkonly"], waitUntilExit: true)
         // Toggles verbose mode
         toggleOption(enableOption: verboseMode, optionName: "verbose_mode")
+        // Verbose logging.
+        log.verbose("\(#function.components(separatedBy: "(")[0]) - triggering Munki with --installonly --force")
         // Install all items, including pending.. ignoring if running etc
         (_, _) = runTask(callMethod: "", logActions: false, taskPath: "/usr/local/munki/managedsoftwareupdate",
                          taskArguments: ["--installonly", "--force"], waitUntilExit: false)
     // If we're not forcing...
     } else {
+        // Verbose logging.
+        log.verbose("\(#function.components(separatedBy: "(")[0]) - triggering Munki with --auto --munkistatusoutput")
         // Run Munki.
         (_, _) = runTask(callMethod: "", logActions: false, taskPath: "/usr/local/munki/managedsoftwareupdate",
                          taskArguments: ["--auto", "--munkistatusoutput"], waitUntilExit: false)
