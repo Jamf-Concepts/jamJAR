@@ -233,14 +233,14 @@ func postNotification(notificationButton: Bool, notificationButtonText: String, 
     if PreferenceVariables.useNotifier {
         // Notifier (dataJAR) uses double-dash flags.
         if notificationButton {
-            shellCommand = "\"\(binaryPath)\" --messageaction \"\(GlobalVariables.managedSoftwareCenterPath)\""
+            shellCommand = "\"\(binaryPath)\" --messageaction \"'\(GlobalVariables.managedSoftwareCenterPath)'\""
                          + " --message \"\(notificationText)\""
                          + " --title \"\(PreferenceVariables.notificationTitle)\""
                          + " --type \"\(notificationType)\""
                          + " --messagebutton \"\(notificationButtonText)\""
                          + " --messagebuttonaction \"logout\""
         } else {
-            shellCommand = "\"\(binaryPath)\" --messageaction \"\(GlobalVariables.managedSoftwareCenterPath)\""
+            shellCommand = "\"\(binaryPath)\" --messageaction \"'\(GlobalVariables.managedSoftwareCenterPath)'\""
                          + " --message \"\(notificationText)\""
                          + " --title \"\(PreferenceVariables.notificationTitle)\""
                          + " --type \"\(notificationType)\""
