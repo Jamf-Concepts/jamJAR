@@ -1,0 +1,104 @@
+#!/bin/bash
+#
+##########################################################################################
+#
+# In accessing and using this Product, you confirm that you accept the terms of our
+# Product Licence in full and agree to comply with the terms of such Licence.
+#
+# https://resources.jamf.com/documents/products/documentation/software-license-and-services-agreement.pdf
+#
+##########################################################################################
+#
+# DESCRIPTION
+# Postflight for jamJAR.
+#
+##########################################################################################
+#
+# CHANGE LOG
+# 2.0 - Migrated to bash.
+# 1.0 - Created.
+#
+##########################################################################################
+
+# Var declarations
+JAMJAR_BINARY="/usr/local/munki/jamJAR"
+
+# Entry point: triggers jamJAR's postflight action and exits non-zero on failure.
+main()
+{
+    # Var declarations.
+    local jamjar_log
+    local return_code=0
+
+    # Resolve the log file path from preferences.
+    jamjar_log="$(getLogPath)"
+
+    # Trigger jamJAR's postflight action.
+    "${JAMJAR_BINARY}" --postflight
+
+    # Get the command's return code.
+    return_code=$?
+
+    # If the action encountered an issue...
+    if [[ "${return_code}" -ne 0 ]]
+    then
+        # ERROR notification.
+        /bin/echo "jamJAR postflight encountered one or more errors, please review: ${jamjar_log}, for more information."
+        # Exit with the same code.
+        exit "${return_code}"
+    fi
+}
+
+
+# Resolves the jamJAR log file path from local then managed preferences, falling back to defaults.
+# Echoes the full path so callers can capture it with command substitution.
+getLogPath()
+{
+    # Var declarations.
+    local log_dir=""
+    local log_file_name=""
+
+    # Read from local preferences (lower precedence).
+    if [[ -f "/Library/Preferences/com.jamf.jamJAR.plist" ]]
+    then
+        # Read the log directory path from the local plist; suppress stderr if the key is absent.
+        log_dir=$(/usr/bin/defaults read "/Library/Preferences/com.jamf.jamJAR.plist" log_file_dir 2>/dev/null)
+        # Read the log file name from the local plist; suppress stderr if the key is absent.
+        log_file_name=$(/usr/bin/defaults read "/Library/Preferences/com.jamf.jamJAR.plist" log_file_name 2>/dev/null)
+    fi
+
+    # Managed preferences override local preferences when both exist.
+    if [[ -f "/Library/Managed Preferences/com.jamf.jamJAR.plist" ]]
+    then
+        # Read the log directory path from the managed plist; suppress stderr if the key is absent.
+        log_dir=$(/usr/bin/defaults read "/Library/Managed Preferences/com.jamf.jamJAR.plist" log_file_dir 2>/dev/null)
+        # Read the log file name from the managed plist; suppress stderr if the key is absent.
+        log_file_name=$(/usr/bin/defaults read "/Library/Managed Preferences/com.jamf.jamJAR.plist" log_file_name 2>/dev/null)
+    fi
+
+    # Fall back to defaults if not set by either plist.
+    if [[ -z "${log_dir}" ]]
+    then
+        # Default log directory.
+        log_dir="/var/log"
+    fi
+
+    if [[ -z "${log_file_name}" ]]
+    then
+        # Default log file name.
+        log_file_name="jamJAR"
+    fi
+
+    # Build and echo the full path, ensuring a single slash between dir and filename.
+    if [[ "${log_dir}" == */ ]]
+    then
+        # `log_dir` already has a trailing slash.
+        /bin/echo "${log_dir}${log_file_name}.log"
+    else
+        # `log_dir` lacks a trailing slash, so insert one.
+        /bin/echo "${log_dir}/${log_file_name}.log"
+    fi
+}
+
+# Run the main function.
+main "${@}"
