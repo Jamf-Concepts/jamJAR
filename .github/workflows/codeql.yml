@@ -77,6 +77,12 @@ jobs:
         # For more details on CodeQL's query packs, refer to: https://docs.github.com/en/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/configuring-code-scanning#using-queries-in-ql-packs
         # queries: security-extended,security-and-quality
 
+    # The jamJAR target has a SwiftLint run-script build phase; install it
+    # since it's not present on the hosted macOS runner.
+    - name: Install SwiftLint
+      if: matrix.build-mode == 'manual'
+      run: brew install swiftlint
+
     # autobuild crashes on this project (xcodebuild -scheme discovery segfaults),
     # so Swift is built manually and signing is disabled since CI has no identity.
     - name: Build
