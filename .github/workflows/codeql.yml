@@ -81,7 +81,7 @@ jobs:
     # since it's not present on the hosted macOS runner.
     - name: Install SwiftLint
       if: matrix.build-mode == 'manual'
-      run: brew install swiftlint
+      run: arch -arm64 brew install swiftlint
 
     # autobuild crashes on this project (xcodebuild -scheme discovery segfaults),
     # so Swift is built manually and signing is disabled since CI has no identity.
