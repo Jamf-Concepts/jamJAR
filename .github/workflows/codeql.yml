@@ -58,11 +58,14 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v7
 
-    # Add any setup steps before running the `github/codeql-action/init` action.
-    # This includes steps like installing compilers or runtimes (`actions/setup-node`
-    # or others). This is typically only required for manual builds.
-    # - name: Setup runtime (example)
-    #   uses: actions/setup-example@v1
+    # The jamJAR target has a SwiftLint run-script build phase; install it
+    # since it's not present on the hosted macOS runner. Must run before
+    # Initialize CodeQL: the Swift tracer injects an x86_64 dylib via
+    # DYLD_INSERT_LIBRARIES, which forces Rosetta on the rest of the job and
+    # breaks installing into the arm64-native /opt/homebrew prefix.
+    - name: Install SwiftLint
+      if: matrix.build-mode == 'manual'
+      run: brew install swiftlint
 
     # Initializes the CodeQL tools for scanning.
     - name: Initialize CodeQL
@@ -76,12 +79,6 @@ jobs:
 
         # For more details on CodeQL's query packs, refer to: https://docs.github.com/en/code-security/code-scanning/automatically-scanning-your-code-for-vulnerabilities-and-errors/configuring-code-scanning#using-queries-in-ql-packs
         # queries: security-extended,security-and-quality
-
-    # The jamJAR target has a SwiftLint run-script build phase; install it
-    # since it's not present on the hosted macOS runner.
-    - name: Install SwiftLint
-      if: matrix.build-mode == 'manual'
-      run: arch -arm64 brew install swiftlint
 
     # autobuild crashes on this project (xcodebuild -scheme discovery segfaults),
     # so Swift is built manually and signing is disabled since CI has no identity.
